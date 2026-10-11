@@ -7,6 +7,11 @@ function createPlayer(name) {
     return {name};
 }
 
+function getPlayerMove(player, mark) {
+    let pos;
+    gameboard[pos] = mark;
+}
+
 const gameflow = ((gb) => {
     let winCondition = false;
     let fullGameboard = false;

@@ -7,7 +7,7 @@ function createPlayer(name) {
     return {name};
 }
 
-function gameflow(gb) {
+const gameflow = ((gb) => {
     let winCondition = false;
     let fullGameboard = false;
     let turn = 1;
@@ -19,7 +19,7 @@ function gameflow(gb) {
         }
         winCondition = checkGameBoard(gb);
     }
-}
+})
 
 const gameboard = createGameboard();
 

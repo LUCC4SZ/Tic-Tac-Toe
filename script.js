@@ -6,23 +6,11 @@ function createPlayer(name, mark) {
     return {name, mark};
 }
 
-function getPlayerMove(player, pos) {
-    return gameboard[pos] = player.mark;
+function getPlayerMove(player) {
+    let positionPlayed = 3;
+    let playerMark = player.mark;
+    return {playerMark, positionPlayed};
 }
-
-// const gameflow = ((gb) => {
-//     let winCondition = false;
-//     let fullGameboard = false;
-//     let turn = 1;
-//     while (!fullGameboard && !winCondition) {
-//         if (!turn % 2 == 0) {
-//             gb = getPlayerOneMove();
-//         } else {
-//             gb = getPlayerTwoMove();
-//         }
-//         winCondition = checkGameBoard(gb);
-//     }
-// })(gameboard);
 
 const gameboard = createGameboard();
 
@@ -34,6 +22,8 @@ console.log(gameboard);
 console.log(playerOne);
 console.log(playerTwo);
 
-getPlayerMove(playerOne, 0);
-getPlayerMove(playerTwo, 2);
+const positionGameBoard = getPlayerMove(playerOne);
+console.log(positionGameBoard);
+gameboard[positionGameBoard.positionPlayed] = positionGameBoard.playerMark;
+//getPlayerMove(playerTwo, 2);
 console.log(gameboard);

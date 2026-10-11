@@ -7,6 +7,20 @@ function createPlayer(name) {
     return {name};
 }
 
+function gameflow(gb) {
+    let winCondition = false;
+    let fullGameboard = false;
+    let turn = 1;
+    while (!fullGameboard && !winCondition) {
+        if (!turn % 2 == 0) {
+            gb = getPlayerOneMove();
+        } else {
+            gb = getPlayerTwoMove();
+        }
+        winCondition = checkGameBoard(gb);
+    }
+}
+
 const gameboard = createGameboard();
 
 const playerOne = createPlayer("Lucca");

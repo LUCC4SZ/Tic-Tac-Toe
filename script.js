@@ -1,15 +1,13 @@
 function createGameboard(){
-    const arr = [];
-    return {arr};
+    return arr = [];
 }
 
 function createPlayer(name, mark) {
     return {name, mark};
 }
 
-function getPlayerMove(player, mark) {
-    let pos;
-    gameboard[pos] = mark;
+function getPlayerMove(player, pos) {
+    return gameboard[pos] = player.mark;
 }
 
 // const gameflow = ((gb) => {
@@ -35,3 +33,7 @@ console.log(gameboard);
 
 console.log(playerOne);
 console.log(playerTwo);
+
+getPlayerMove(playerOne, 0);
+getPlayerMove(playerTwo, 2);
+console.log(gameboard);

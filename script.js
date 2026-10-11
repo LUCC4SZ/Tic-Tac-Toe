@@ -19,7 +19,7 @@ const gameflow = ((gb) => {
         }
         winCondition = checkGameBoard(gb);
     }
-})
+})(gameboard);
 
 const gameboard = createGameboard();
 

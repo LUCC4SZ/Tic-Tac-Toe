@@ -7,7 +7,8 @@ function createPlayer(name, mark) {
 }
 
 function getPlayerMove(player) {
-    let positionPlayed = 3;
+    let positionPlayed = Math.floor(Math.random() * 9);
+    console.log(positionPlayed);
     let playerMark = player.mark;
     return {playerMark, positionPlayed};
 }

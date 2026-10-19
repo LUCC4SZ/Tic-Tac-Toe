@@ -13,6 +13,22 @@ function getPlayerMove(player) {
     return {playerMark, positionPlayed};
 }
 
+function playGame(board) {
+    let counterGame = 1;
+    while (counterGame <= 9) { // && checkGameboard(board)
+        console.log(`Turn ${counterGame}`);
+        let play;
+        if (!counterGame % 2 == 0) {
+            play = getPlayerMove(playerOne);
+            console.log(play);
+        } else {
+            play = getPlayerMove(playerTwo);
+            console.log(play);
+        }
+        counterGame++;
+    }
+}
+
 const gameboard = createGameboard();
 
 const playerOne = createPlayer("Lucca", "X");
@@ -28,3 +44,5 @@ console.log(positionGameBoard);
 gameboard[positionGameBoard.positionPlayed] = positionGameBoard.playerMark;
 //getPlayerMove(playerTwo, 2);
 console.log(gameboard);
+
+playGame(gameboard);

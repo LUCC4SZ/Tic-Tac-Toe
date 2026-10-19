@@ -17,16 +17,33 @@ function playGame(board) {
     while (counterGame <= 9) { // && checkGameboard(board)
         console.log(`Turn ${counterGame}`);
         let play;
-        console.log(counterGame % 2);
+        let positionsTaken = [];
+        console.log(positionsTaken);
+        let newPlay = false;
         if (!(counterGame % 2 == 0)) {
             console.log("Player one turn!");
-            play = getPlayerMove(playerOne);
-            console.log(play);
+            do {
+                play = getPlayerMove(playerOne);
+                if (!(positionsTaken.includes(play))) {
+                    positionsTaken.push(play.positionPlayed);
+                    console.log(`State of the board: ${positionsTaken}`);
+                    newPlay = true;
+                }
+            } while (!newPlay);
+            console.log(`Player one plays on position ${play.positionPlayed}!`);
         } else {
             console.log("Player two turn!");
-            play = getPlayerMove(playerTwo);
-            console.log(play);
+            do {
+                play = getPlayerMove(playerTwo);
+                if (!(positionsTaken.includes(play))) {
+                    positionsTaken.push(play.positionPlayed);
+                    console.log(`State of the board: ${positionsTaken}`);
+                    newPlay = true;
+                }
+            } while (!newPlay);
+            console.log(`Player two plays on position ${play.positionPlayed}!`);
         }
+        console.log(`Final state: ${positionsTaken}`);
         counterGame++;
     }
 }

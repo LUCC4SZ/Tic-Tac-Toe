@@ -14,35 +14,50 @@ function getPlayerMove(player) {
 
 function checkPlay(currentPlay, plays) {
     let state;
-    plays.forEach(element => {
-        if (element === currentPlay) {
+    console.log(currentPlay);
+    for (let i = 0; i < plays.length; i++) {
+        if (plays[i] == currentPlay) {
             console.log("The position is already taken.");
             state = true;
         } else {
-        console.log("The position is free.");
+            console.log("The position is free.");
             state = false;
         }
-    });
+    };
+    // plays.forEach(element => {
+    //     if (element === currentPlay) {
+    //         console.log("The position is already taken.");
+    //         state = true;
+    //     } else {
+    //     console.log("The position is free.");
+    //         state = false;
+    //     }
+    // });
     return state;
 }
 
 function playGame(board) {
     let counterGame = 1;
+    let positionsTaken = [];
+    for (let i = 0; i < positionsTaken.length; i++) {
+        positionsTaken.push(null);
+    }
+    let play;
+    play = getPlayerMove(playerOne);
+    counterGame++;
+    console.log(play.positionPlayed);
+    positionsTaken[play.positionPlayed] = play.playerMark;
+    console.log(positionsTaken);
     while (counterGame <= 9) { // && checkGameboard(board)
         console.log(`Turn ${counterGame}`);
-        let play;
-        let positionsTaken = [];
         console.log(positionsTaken);
         let newPlay = false;
-        play = getPlayerMove(playerOne);
-        positionsTaken[play.positionPlayed] = play.playerMark;
-        counterGame++;
         if (counterGame % 2 == 0) {
             console.log("Player two turn!");
             do {
                 play = getPlayerMove(playerTwo);
                 newPlay = checkPlay(play.positionPlayed, positionsTaken);
-            } while (!newPlay);
+            } while (newPlay);
             positionsTaken[play.positionPlayed] = play.playerMark;
             console.log(`Player two plays on position ${play.positionPlayed}!`);
         } else {
@@ -50,14 +65,15 @@ function playGame(board) {
             do {
                 play = getPlayerMove(playerOne);
                 newPlay = checkPlay(play.positionPlayed, positionsTaken);
-            } while (!newPlay);
+            } while (newPlay);
             positionsTaken[play.positionPlayed] = play.playerMark;
             console.log(`Player one plays on position ${play.positionPlayed}!`);
         }
-        console.log(`Final state: ${positionsTaken}`);
+        console.log(positionsTaken);
+        board = positionsTaken;
         counterGame++;
     }
-    console.log(board);
+    //console.log(board);
 }
 
 const gameboard = createGameboard();
@@ -65,18 +81,18 @@ const gameboard = createGameboard();
 const playerOne = createPlayer("Lucca", "X");
 const playerTwo = createPlayer("Begoodey", "O");
 
-//playGame(gameboard);
+playGame(gameboard);
 
-const positionsTaken = [];
+// const positionsTaken = [];
 
-let play = getPlayerMove(playerOne);
-positionsTaken[play.positionPlayed] = play.playerMark;
-console.log(positionsTaken);
-let newPlay = checkPlay(play.positionPlayed, positionsTaken);
-console.log(newPlay);
+// let play = getPlayerMove(playerOne);
+// positionsTaken[play.positionPlayed] = play.playerMark;
+// console.log(positionsTaken);
+// let newPlay = checkPlay(play.positionPlayed, positionsTaken);
+// console.log(newPlay);
 
-play = getPlayerMove(playerTwo);
-positionsTaken[play.positionPlayed] = play.playerMark;
-console.log(positionsTaken);
-newPlay = checkPlay(play.positionPlayed, positionsTaken);
-console.log(newPlay);
+// play = getPlayerMove(playerTwo);
+// positionsTaken[play.positionPlayed] = play.playerMark;
+// console.log(positionsTaken);
+// newPlay = checkPlay(play.positionPlayed, positionsTaken);
+// console.log(newPlay);

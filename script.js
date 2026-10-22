@@ -13,13 +13,17 @@ function getPlayerMove(player) {
 }
 
 function checkPlay(currentPlay, plays) {
+    let state;
     plays.forEach(element => {
         if (element === currentPlay) {
-            return true;
+            console.log("The position is already taken.");
+            state = true;
         } else {
-            return false;
+        console.log("The position is free.");
+            state = false;
         }
     });
+    return state;
 }
 
 function playGame(board) {
@@ -61,4 +65,18 @@ const gameboard = createGameboard();
 const playerOne = createPlayer("Lucca", "X");
 const playerTwo = createPlayer("Begoodey", "O");
 
-playGame(gameboard);
+//playGame(gameboard);
+
+const positionsTaken = [];
+
+let play = getPlayerMove(playerOne);
+positionsTaken[play.positionPlayed] = play.playerMark;
+console.log(positionsTaken);
+let newPlay = checkPlay(play.positionPlayed, positionsTaken);
+console.log(newPlay);
+
+play = getPlayerMove(playerTwo);
+positionsTaken[play.positionPlayed] = play.playerMark;
+console.log(positionsTaken);
+newPlay = checkPlay(play.positionPlayed, positionsTaken);
+console.log(newPlay);

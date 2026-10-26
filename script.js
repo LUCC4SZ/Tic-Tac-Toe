@@ -19,12 +19,16 @@ function checkGameboard(board) {
     }
     let [a, b, c] = aux;
     console.log(a + " " + b + " " + c);
+    if (a === b && a === c) {
+        console.log("You win!")
+    }
 }
 
 function playGame(board) {
     let counterGame = 1;
     let positionsTaken = [];
     let play;
+    console.log(`Turn ${counterGame}`);
     play = getPlayerMove(playerOne);
     console.log(`Player one plays on position ${play.positionPlayed}!`);
     positionsTaken.push(play.positionPlayed);

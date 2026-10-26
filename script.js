@@ -12,6 +12,15 @@ function getPlayerMove(player) {
     return {playerMark, positionPlayed};
 }
 
+function checkGameboard(board) {
+    let aux = [];
+    for (let i = 0; i < 3; i++) {
+        aux.push(board[i]);
+    }
+    let [a, b, c] = aux;
+    console.log(a + " " + b + " " + c);
+}
+
 function playGame(board) {
     let counterGame = 1;
     let positionsTaken = [];
@@ -45,6 +54,7 @@ function playGame(board) {
         counterGame++;
     }
     console.log(board);
+    checkGameboard(board);
 }
 
 const gameboard = createGameboard();

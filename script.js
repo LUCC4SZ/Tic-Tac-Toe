@@ -13,28 +13,51 @@ function getPlayerMove(player) {
 }
 
 function checkGameboard(board) {
-    let aux = [];
-    for (let i = 0; i < 3; i++) {
-        aux.push(board[i]);
+    let winner = false;
+    let auxA = [];
+    let auxB = [];
+    let auxC = [];
+    for (let i = 0; i < board.length; i++) {
+        if (i < 3) {
+            auxA.push(board[i]);
+        }
+        if (i > 2 && i < 6) {
+            auxB.push(board[i]);
+        }
+        if (i > 5) {
+            auxC.push(board[i]);
+        }
     }
-    let [a, b, c] = aux;
-    console.log(a + " " + b + " " + c);
+    console.log(auxA);
+    console.log(auxB);
+    console.log(auxC);
+    let [a, b, c] = auxA;
+    let [d, e, f] = auxB;
+    let [g, h, i] = auxC;
     if (a === b && a === c) {
-        console.log("You win!")
+        winner = true;
     }
+    if (d === e && d === f) {
+        winner = true;
+    }
+    if (g === h && g === i) {
+        winner = true;
+    }
+    return winner;
 }
 
 function playGame(board) {
     let counterGame = 1;
     let positionsTaken = [];
     let play;
+    let winningCondition = false;
     console.log(`Turn ${counterGame}`);
     play = getPlayerMove(playerOne);
     console.log(`Player one plays on position ${play.positionPlayed}!`);
     positionsTaken.push(play.positionPlayed);
     counterGame++;
     board[play.positionPlayed] = play.playerMark;
-    while (counterGame <= 9) { // && checkGameboard(board)
+    while (counterGame <= 9 != winningCondition) { // && checkGameboard(board)
         console.log(`Turn ${counterGame}`);
         if (counterGame % 2 == 0) {
             console.log("Player two turn!");
@@ -56,9 +79,10 @@ function playGame(board) {
             console.log(`Player one plays on position ${play.positionPlayed}!`);
         }
         counterGame++;
+        if (counterGame >= 5) {
+            winningCondition = checkGameboard(board);
+        }
     }
-    console.log(board);
-    checkGameboard(board);
 }
 
 const gameboard = createGameboard();

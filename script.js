@@ -21,19 +21,22 @@ function playGame(board) {
     let historyPlays = [];
     for (let i = 1; i <= 9; i++) {
         if (i % 2 == 0) {
+            console.log("Player two turn!");
             play = getPlayerMove(playerTwo);
             while (historyPlays.includes(play.position)) {
                 play = getPlayerMove(playerTwo);
             }
+            console.log(`Player two plays on position ${play.position}`);
         } else {
+            console.log("Player one turn!");
             play = getPlayerMove(playerOne);
             while (historyPlays.includes(play.position)) {
-                play = getPlayerMove(playerTwo);
+                play = getPlayerMove(playerOne);
             }
+            console.log(`Player one plays on position ${play.position}`);
         }        
         historyPlays.push(play.position);
-        console.log(historyPlays);
-        board.push(play.mark);
+        board[play.position] = play.mark;
     }
 }
 

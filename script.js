@@ -17,17 +17,25 @@ function checkGameboard(board) {
 }
 
 function playGame(board) {
-    let play = getPlayerMove(playerOne);
-    console.log(play);
+    let play;
     let historyPlays = [];
-    historyPlays.push(play.position);
-    console.log(historyPlays);
-    play = getPlayerMove(playerOne);
-    while (historyPlays.includes(play.position)) {
-        play = getPlayerMove(playerOne);
+    for (let i = 1; i <= 9; i++) {
+        if (i % 2 == 0) {
+            play = getPlayerMove(playerTwo);
+            while (historyPlays.includes(play.position)) {
+                console.log("A");
+                play = getPlayerMove(playerTwo);
+            }
+        } else {
+            play = getPlayerMove(playerOne);
+            while (historyPlays.includes(play.position)) {
+                console.log("A");
+                play = getPlayerMove(playerTwo);
+            }
+        }        
+        historyPlays.push(play.position);
+        console.log(historyPlays);
     }
-    historyPlays.push(play.position);
-    console.log(historyPlays);
 }
 
 const gameboard = createGameboard();

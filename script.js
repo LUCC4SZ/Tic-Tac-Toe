@@ -19,6 +19,15 @@ function checkGameboard(board) {
 function playGame(board) {
     let play = getPlayerMove(playerOne);
     console.log(play);
+    let historyPlays = [];
+    historyPlays.push(play.position);
+    console.log(historyPlays);
+    play = getPlayerMove(playerOne);
+    while (historyPlays.includes(play.position)) {
+        play = getPlayerMove(playerOne);
+    }
+    historyPlays.push(play.position);
+    console.log(historyPlays);
 }
 
 const gameboard = createGameboard();

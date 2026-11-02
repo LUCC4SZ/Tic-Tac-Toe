@@ -23,18 +23,17 @@ function playGame(board) {
         if (i % 2 == 0) {
             play = getPlayerMove(playerTwo);
             while (historyPlays.includes(play.position)) {
-                console.log("A");
                 play = getPlayerMove(playerTwo);
             }
         } else {
             play = getPlayerMove(playerOne);
             while (historyPlays.includes(play.position)) {
-                console.log("A");
                 play = getPlayerMove(playerTwo);
             }
         }        
         historyPlays.push(play.position);
         console.log(historyPlays);
+        board.push(play.mark);
     }
 }
 
@@ -44,3 +43,4 @@ const playerOne = createPlayer("Lucca", "X");
 const playerTwo = createPlayer("Begoodey", "O");
 
 playGame(gameboard);
+console.log(gameboard);

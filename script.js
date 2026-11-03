@@ -16,27 +16,21 @@ function checkGameboard(board) {
     
 }
 
-function playGame(board) {
-    let play;
+function playerTurns(hP, player) {
+    let play = getPlayerMove(player);
+    while (hP.includes(play.position)) {
+        play = getPlayerMove(player);
+    }
+    hP.push(play.position);
+    gameboard[play.position] = play.mark;
+}
+
+function playGame() {
     let historyPlays = [];
     for (let i = 1; i <= 9; i++) {
-        if (i % 2 == 0) {
-            console.log("Player two turn!");
-            play = getPlayerMove(playerTwo);
-            while (historyPlays.includes(play.position)) {
-                play = getPlayerMove(playerTwo);
-            }
-            console.log(`Player two plays on position ${play.position}`);
-        } else {
-            console.log("Player one turn!");
-            play = getPlayerMove(playerOne);
-            while (historyPlays.includes(play.position)) {
-                play = getPlayerMove(playerOne);
-            }
-            console.log(`Player one plays on position ${play.position}`);
-        }        
-        historyPlays.push(play.position);
-        board[play.position] = play.mark;
+        i % 2 == 0
+        ? (console.log("Player Two turn!"), playerTurns(historyPlays, playerTwo))
+        : (console.log("Player One turn!"), playerTurns(historyPlays, playerOne));
     }
 }
 

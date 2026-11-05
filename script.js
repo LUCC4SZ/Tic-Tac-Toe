@@ -12,8 +12,18 @@ function getPlayerMove(player) {
     return {mark, position};
 }
 
-function checkGameboard(board) {
-    
+function checkGameboard() {
+    for (let i = 0; i < 9; i++) {
+        if (gameboard[i] !== undefined) {
+            if (gameboard[i] == gameboard[i + 1] && gameboard[i] == gameboard[i + 2]) {
+                console.log("Winning lane!");
+                return true;
+            } else {
+                console.log("Not yet...");
+                return false;
+            }
+        }
+    }
 }
 
 function playerTurns(hP, player) {
@@ -33,7 +43,13 @@ function playGame() {
         i % 2 == 0
         ? (console.log("Player Two turn!"), playerTurns(historyPlays, playerTwo))
         : (console.log("Player One turn!"), playerTurns(historyPlays, playerOne));
+        if (i >= 5) {
+            winnerFound = checkGameboard();
+        }
         i++;
+    }
+    if (!winnerFound) {
+        console.log("Tie!");
     }
 }
 

@@ -27,10 +27,13 @@ function playerTurns(hP, player) {
 
 function playGame() {
     let historyPlays = [];
-    for (let i = 1; i <= 9; i++) {
+    let i = 1;
+    let winnerFound = false;
+    while (i <= 9 && !winnerFound) {
         i % 2 == 0
         ? (console.log("Player Two turn!"), playerTurns(historyPlays, playerTwo))
         : (console.log("Player One turn!"), playerTurns(historyPlays, playerOne));
+        i++;
     }
 }
 

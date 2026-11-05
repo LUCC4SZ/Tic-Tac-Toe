@@ -12,10 +12,10 @@ function getPlayerMove(player) {
     return {mark, position};
 }
 
-function checkRows(firstElement) {
-    if (firstElement !== undefined) {
-        if (gameboard[firstElement] == gameboard[firstElement + 1] && gameboard[firstElement] == gameboard[firstElement + 2]) {
-            console.log(`Winning lane: ${firstElement} + ${firstElement + 1} + ${firstElement + 2}`)
+function checkRows(rowIndex) {
+    if (rowIndex !== undefined) {
+        if (gameboard[rowIndex] == gameboard[rowIndex + 1] && gameboard[rowIndex] == gameboard[rowIndex + 2]) {
+            console.log(`Winning lane: ${rowIndex} + ${rowIndex + 1} + ${rowIndex + 2}`)
             return true;
         } else {
             return false;
@@ -23,11 +23,28 @@ function checkRows(firstElement) {
     }
 }
 
-function checkGameboard() {
+function checkColumns(columnIndex) {
+    if (columnIndex !== undefined) {
+        if (gameboard[columnIndex] == gameboard[columnIndex + 3] && gameboard[columnIndex] == gameboard[columnIndex + 6]) {
+            console.log(`Winning lane: ${columnIndex} + ${columnIndex + 3} + ${columnIndex + 6}`);
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+function checkGameboard(winnerFound) {
     for (let i = 0; i < 9; i++) {
         if (i == 0 || i == 3 || i == 6) {
-            return checkRows(i);
+            console.log(i);
+            winnerFound = checkRows(i);
         }
+        if (i == 0 || i == 1 || i == 2) {
+            console.log(i);
+            winnerFound = checkColumns(i);
+        }
+
     }
 }
 
@@ -49,7 +66,7 @@ function playGame() {
         ? (console.log("Player Two turn!"), playerTurns(historyPlays, playerTwo))
         : (console.log("Player One turn!"), playerTurns(historyPlays, playerOne));
         if (i >= 5) {
-            winnerFound = checkGameboard();
+            checkGameboard(winnerFound);
         }
         i++;
     }

@@ -34,18 +34,49 @@ function checkColumns(columnIndex) {
     }
 }
 
-function checkGameboard(winnerFound) {
+function checkDiagonals(diagonalIndex) {
+    if (diagonalIndex !== undefined) {
+        switch (diagonalIndex) {
+            case 0:
+                if (gameboard[diagonalIndex] == gameboard[diagonalIndex + 4]
+                    && gameboard[diagonalIndex] == gameboard[diagonalIndex + 8]) {
+                        console.log(`Winning lane: ${diagonalIndex} + ${diagonalIndex + 4} + ${diagonalIndex + 8}`);
+                        return true;
+                    } else {
+                        return false;
+                    }
+            case 2:
+                if (gameboard[diagonalIndex] == gameboard[diagonalIndex + 2]
+                    && gameboard[diagonalIndex] == gameboard[diagonalIndex + 4]) {
+                        console.log(`Winning lane: ${diagonalIndex} + ${diagonalIndex + 2} + ${diagonalIndex + 4}`);
+                        return true;
+                    } else {
+                        return false;
+                    }
+        }
+    }
+}
+
+function checkGameboard() {
+    let winningCondition = false;
     for (let i = 0; i < 9; i++) {
         if (i == 0 || i == 3 || i == 6) {
             console.log(i);
-            winnerFound = checkRows(i);
+            console.log("Checking rows...");
+            winningCondition = checkRows(i);
         }
         if (i == 0 || i == 1 || i == 2) {
             console.log(i);
-            winnerFound = checkColumns(i);
+            console.log("Checking columns...");
+            winningCondition = checkColumns(i);
         }
-
+        if (i == 0 || i == 2) {
+            console.log(i);
+            console.log("Checking diagonals...");
+            winningCondition = checkDiagonals(i);
+        }
     }
+    return winningCondition;
 }
 
 function playerTurns(hP, player) {
@@ -66,7 +97,7 @@ function playGame() {
         ? (console.log("Player Two turn!"), playerTurns(historyPlays, playerTwo))
         : (console.log("Player One turn!"), playerTurns(historyPlays, playerOne));
         if (i >= 5) {
-            checkGameboard(winnerFound);
+            winnerFound = checkGameboard();
         }
         i++;
     }

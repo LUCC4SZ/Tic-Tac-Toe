@@ -12,16 +12,21 @@ function getPlayerMove(player) {
     return {mark, position};
 }
 
+function checkRows(firstElement) {
+    if (firstElement !== undefined) {
+        if (gameboard[firstElement] == gameboard[firstElement + 1] && gameboard[firstElement] == gameboard[firstElement + 2]) {
+            console.log(`Winning lane: ${firstElement} + ${firstElement + 1} + ${firstElement + 2}`)
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 function checkGameboard() {
     for (let i = 0; i < 9; i++) {
-        if (gameboard[i] !== undefined) {
-            if (gameboard[i] == gameboard[i + 1] && gameboard[i] == gameboard[i + 2]) {
-                console.log("Winning lane!");
-                return true;
-            } else {
-                console.log("Not yet...");
-                return false;
-            }
+        if (i == 0 || i == 3 || i == 6) {
+            return checkRows(i);
         }
     }
 }

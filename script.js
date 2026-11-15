@@ -58,9 +58,11 @@ function checkDiagonals(diagonalIndex) {
 }
 
 function checkGameboard() {
+    console.log("------------------------");
     let winningCondition = false;
     let i = 0;
     while (i <= 8 && !winningCondition) {
+        console.log(`Checking cell ${i} and its possibilities...`);
         if (i == 0 || i == 3 || i == 6) {
             console.log("Checking rows...");
             winningCondition = checkRows(i);
@@ -75,23 +77,6 @@ function checkGameboard() {
         }
         i++;
     }
-    // for (let i = 0; i < 9; i++) {
-    //     if (i == 0 || i == 3 || i == 6) {
-    //         console.log(i);
-    //         console.log("Checking rows...");
-    //         winningCondition = checkRows(i);
-    //     }
-    //     if (i == 0 || i == 1 || i == 2) {
-    //         console.log(i);
-    //         console.log("Checking columns...");
-    //         winningCondition = checkColumns(i);
-    //     }
-    //     if (i == 0 || i == 2) {
-    //         console.log(i);
-    //         console.log("Checking diagonals...");
-    //         winningCondition = checkDiagonals(i);
-    //     }
-    // }
     return winningCondition;
 }
 

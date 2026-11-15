@@ -59,23 +59,39 @@ function checkDiagonals(diagonalIndex) {
 
 function checkGameboard() {
     let winningCondition = false;
-    for (let i = 0; i < 9; i++) {
+    let i = 0;
+    while (i <= 8 && !winningCondition) {
         if (i == 0 || i == 3 || i == 6) {
-            console.log(i);
             console.log("Checking rows...");
             winningCondition = checkRows(i);
         }
         if (i == 0 || i == 1 || i == 2) {
-            console.log(i);
             console.log("Checking columns...");
             winningCondition = checkColumns(i);
         }
         if (i == 0 || i == 2) {
-            console.log(i);
             console.log("Checking diagonals...");
             winningCondition = checkDiagonals(i);
         }
+        i++;
     }
+    // for (let i = 0; i < 9; i++) {
+    //     if (i == 0 || i == 3 || i == 6) {
+    //         console.log(i);
+    //         console.log("Checking rows...");
+    //         winningCondition = checkRows(i);
+    //     }
+    //     if (i == 0 || i == 1 || i == 2) {
+    //         console.log(i);
+    //         console.log("Checking columns...");
+    //         winningCondition = checkColumns(i);
+    //     }
+    //     if (i == 0 || i == 2) {
+    //         console.log(i);
+    //         console.log("Checking diagonals...");
+    //         winningCondition = checkDiagonals(i);
+    //     }
+    // }
     return winningCondition;
 }
 
@@ -103,6 +119,8 @@ function playGame() {
     }
     if (!winnerFound) {
         console.log("Tie!");
+    } else {
+        console.log("Winner!");
     }
 }
 
